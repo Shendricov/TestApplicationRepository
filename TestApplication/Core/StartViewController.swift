@@ -13,9 +13,20 @@ class StartViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        decorateButtonTitle()
     }
-
+//MARK: Через тип таймера устанавливаем рассписание вызова метода.
+    func decorateButtonTitle() {
+        Timer.scheduledTimer(timeInterval: 0.2, target: self, selector: #selector(setColorForButtonTitle), userInfo: nil, repeats: true)
+    }
+//    данный метод меняет аттрибуты текста названия кнопки. В нашем случае меняется цвет текста.
+    @objc private func setColorForButtonTitle() {
+        var randomeNumber: CGFloat { CGFloat.random(in: 0...1) }
+        let color = UIColor(red: randomeNumber, green: randomeNumber, blue: randomeNumber, alpha: 1)
+        let attributeText = NSAttributedString(string: "To the second scene", attributes: [NSAttributedString.Key.foregroundColor : color])
+        buttonTranzitSecondScene.setAttributedTitle(attributeText, for: .normal)
+    }
+    
 //MARK:    Три способа переходить между сценами: Segue, Present & Navigation Controller.
 //    Ниже реализуем Present.
     @IBAction func tranzitSecondScene() {
