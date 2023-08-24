@@ -9,21 +9,21 @@ import UIKit
 
 class SecondViewController: UIViewController {
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+    var delegate: ChangeBackgroundColorProtocol?
+//    MARK: инзменяем цвет заднего фона первой сцены при момощи делегата
+    @IBAction private func setGreenColorDelegate() {
+        guard let delegate = delegate else { return }
+        delegate.changeBackgroundColor(color: .systemGreen)
+        self.dismiss(animated: true)
+    }
+    //    MARK: инзменяем цвет заднего фона первой сцены при момощи уведомления
+    @IBAction private func setRedColorNotification() {
+        let notificationName = Notification.Name("setRedBackgroundColor")
+        NotificationCenter.default.post(name: notificationName, object: nil, userInfo: ["BackgroundColor" : UIColor.systemRed])
+        self.dismiss(animated: true)
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    deinit {
+        print("second scene deinit")
     }
-    */
-
 }
