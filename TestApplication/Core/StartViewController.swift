@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol ChangeBackgroundColorProtocol {
+    func changeBackgroundColor(color: UIColor)
+}
+
 class StartViewController: UIViewController {
 
     @IBOutlet weak var buttonTranzitSecondScene: UIButton!
@@ -30,9 +34,12 @@ class StartViewController: UIViewController {
 //MARK:    Три способа переходить между сценами: Segue, Present & Navigation Controller.
 //    Ниже реализуем Present.
     @IBAction func tranzitSecondScene() {
-//        Получаем экземпляр сцены, к которой хотим перейти, из Storyboard.
+//  получаем в виде кода информацию о всех настройках приложения произведенного на storyboard
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//        Получаем экземпляр сцены, из Storyboard, к которой хотим перейти.
         guard let destenationScene = storyboard.instantiateViewController(identifier: "second VC") as? SecondViewController else { return }
+//        передаем себя в качестве делегата, при вызове этого метода цвет фона первой сцены бедет изменен.
+        destenationScene.delegate = self
 //        здесь определяем как будет осуществлена анимация перехода.
         destenationScene.modalTransitionStyle = .coverVertical
 //        здесь определяем как будет отображаться новая сцена.
@@ -44,3 +51,8 @@ class StartViewController: UIViewController {
     }
 }
 
+extension StartViewController: ChangeBackgroundColorProtocol {
+    func changeBackgroundColor(color: UIColor) {
+        view.backgroundColor = color
+    }
+}
