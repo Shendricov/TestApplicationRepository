@@ -18,6 +18,7 @@ class StartViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         decorateButtonTitle()
+        addNotificationForBackgroundcolor()
     }
 //MARK: Через тип таймера устанавливаем рассписание вызова метода.
     func decorateButtonTitle() {
@@ -50,9 +51,23 @@ class StartViewController: UIViewController {
         print("start VC deinit")
     }
 }
-
+//MARK: add protocol delegate
 extension StartViewController: ChangeBackgroundColorProtocol {
     func changeBackgroundColor(color: UIColor) {
         view.backgroundColor = color
+    }
+}
+
+
+//MARK: add notification
+extension StartViewController {
+    private func addNotificationForBackgroundcolor() {
+        let notificationName = Notification.Name("setRedBackgroundColor")
+        NotificationCenter.default.addObserver(self, selector: #selector(setColorBackground), name: notificationName, object: nil)
+    }
+    @objc private func setColorBackground(_ notification: Notification) {
+        guard let color = notification.userInfo?["BackgroundColor"] as? UIColor else { return }
+        self.view.backgroundColor = color
+                
     }
 }
