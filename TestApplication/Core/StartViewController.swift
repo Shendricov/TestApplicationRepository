@@ -89,10 +89,8 @@ extension StartViewController {
 //MARK: add load animation
 extension StartViewController {
    
-    
     private func animationLoadStartVC() {
-       
-          let timer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(setProgress), userInfo: nil, repeats: true)
+        Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(setProgress), userInfo: nil, repeats: true)
     }
     
     @objc private func setProgress() {
