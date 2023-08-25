@@ -24,23 +24,40 @@
                                     <action selector="tranzitSecondScene" destination="BYZ-38-t0r" eventType="touchUpInside" id="VZq-4d-H3q"/>
                                 </connections>
                             </button>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="2X9-yY-7Up">
+                                <rect key="frame" x="20" y="508.66666666666669" width="353" height="4.0000000000000568"/>
+                            </progressView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loading app ......." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5sd-N0-8Na">
+                                <rect key="frame" x="20" y="322.66666666666669" width="353" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemGray3Color"/>
                         <constraints>
+                            <constraint firstItem="2X9-yY-7Up" firstAttribute="top" secondItem="P4u-Nb-mON" secondAttribute="bottom" constant="65" id="33d-CI-sYB"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" relation="lessThanOrEqual" secondItem="P4u-Nb-mON" secondAttribute="trailing" constant="20" id="4EX-IP-euO"/>
+                            <constraint firstItem="2X9-yY-7Up" firstAttribute="trailing" secondItem="P4u-Nb-mON" secondAttribute="trailing" id="9FD-TW-uPG"/>
+                            <constraint firstItem="5sd-N0-8Na" firstAttribute="leading" secondItem="P4u-Nb-mON" secondAttribute="leading" id="IGW-aV-uqb"/>
                             <constraint firstItem="P4u-Nb-mON" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="YIX-GO-cA3"/>
+                            <constraint firstItem="P4u-Nb-mON" firstAttribute="top" secondItem="5sd-N0-8Na" secondAttribute="bottom" constant="65" id="a9a-jX-Utw"/>
+                            <constraint firstItem="5sd-N0-8Na" firstAttribute="trailing" secondItem="P4u-Nb-mON" secondAttribute="trailing" id="ntH-VO-V2p"/>
                             <constraint firstItem="P4u-Nb-mON" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="qlC-vW-9PC"/>
                             <constraint firstItem="P4u-Nb-mON" firstAttribute="leading" relation="lessThanOrEqual" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="ubD-jC-cZk"/>
+                            <constraint firstItem="2X9-yY-7Up" firstAttribute="leading" secondItem="P4u-Nb-mON" secondAttribute="leading" id="zND-Eh-KNT"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="buttonTranzitSecondScene" destination="P4u-Nb-mON" id="94x-zO-GU9"/>
+                        <outlet property="loadingLabel" destination="5sd-N0-8Na" id="YWQ-hr-Unb"/>
+                        <outlet property="progressView" destination="2X9-yY-7Up" id="jji-7w-dcF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1166" y="-14"/>
+            <point key="canvasLocation" x="-1167.175572519084" y="-14.084507042253522"/>
         </scene>
         <!--Second View Controller-->
         <scene sceneID="41G-Jd-pt7">
