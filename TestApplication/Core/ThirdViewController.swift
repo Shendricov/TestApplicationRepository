@@ -9,17 +9,11 @@ import UIKit
 
 class ThirdViewController: UIViewController {
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        self.view.addSubview(scrollView)
-        configureScrollView()
-    }
-    
     private var contentSize: CGSize {
         CGSize(width: self.view.bounds.width, height: self.view.bounds.width + 100)
     }
     
-//  MARK:  make scrollView
+//  MARK: 1. make scrollView
     private lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
 //        приравниваем границы самого skrollView с границам view на которой она располагается.
@@ -28,27 +22,55 @@ class ThirdViewController: UIViewController {
         scrollView.contentSize = contentSize
         return scrollView
     }()
-
-    private func contentView() -> UIView {
-        let colorBascet = [UIColor.red, .blue, .yellow, .purple]
+    
+//MARK: 2. make content
+    private lazy var contentView: UIView = {
         let contentView = UIView()
-        contentView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            contentView.widthAnchor.constraint(equalToConstant: 300),
-            contentView.heightAnchor.constraint(equalToConstant: 50)
-        ])
-        contentView.backgroundColor = colorBascet.randomElement()
+        contentView.backgroundColor = .white
+        contentView.frame.size = contentSize
         return contentView
+    }()
+    
+//    MARK: 3. make vertical stack
+    private lazy var vStackView: UIStackView = {
+       let stack = UIStackView()
+        stack.axis = .vertical
+        stack.spacing = 20
+        return stack
+    }()
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        view.addSubview(scrollView)
+        scrollView.addSubview(contentView)
+        contentView.addSubview(vStackView)
     }
     
+}
+
+
+extension ThirdViewController {
+    private func setupViewConstraints() {
+        vStackView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            vStackView.topAnchor.constraint(equalTo: contentView.topAnchor),
+            vStackView.leftAnchor.constraint(equalTo: contentView.leftAnchor),
+            vStackView.rightAnchor.constraint(equalTo: contentView.leftAnchor)
+        ])
+        for view in vStackView.arrangedSubviews {
+            NSLayoutConstraint.activate([
+                view.widthAnchor.constraint(equalToConstant: 300),
+                view.heightAnchor.constraint(equalToConstant: 100)
+            ])
+        }
+    }
     
-    private func configureScrollView() {
-        let vStack = UIStackView()
-        scrollView.addSubview(vStack)
-        vStack.frame = scrollView.bounds
-        for _ in 0...30 {
-            let contentView = contentView()
-            vStack.addArrangedSubview(contentView)
+    private func setupColors() {
+        let colors = [UIColor.red, .blue, .yellow, .green]
+        for index in 0..<10 {
+            let currentView = UIView()
+            currentView.backgroundColor = colors[index % colors.count]
+            vStackView.addArrangedSubview(currentView)
         }
     }
 }
