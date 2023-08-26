@@ -26,4 +26,12 @@ class SecondViewController: UIViewController {
     deinit {
         print("second scene deinit")
     }
+    
+    
+    //    MARK: переходим на экран со scrollView
+    @IBAction func toTheThirdScene() {
+        let destination: UIViewController = ThirdViewController()
+        self.present(destination, animated: true)
+    }
+    
 }
