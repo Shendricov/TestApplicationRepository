@@ -48,6 +48,10 @@ class StartViewController: UIViewController {
     deinit {
         print("start VC deinit")
     }
+    
+    @IBAction func transiteThirdScene(_ sender: Any) {
+    }
+    
 }
 //MARK: add protocol delegate
 extension StartViewController: ChangeBackgroundColorProtocol {

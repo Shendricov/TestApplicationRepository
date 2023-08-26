@@ -92,6 +92,9 @@
                                         <rect key="frame" x="0.0" y="98.666666666666686" width="353" height="34.333333333333343"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="filled" title="To the scroll view"/>
+                                        <connections>
+                                            <action selector="transiteThirdScene:" destination="8tb-Jd-w4V" eventType="touchUpInside" id="wNo-yg-rYm"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>
@@ -107,6 +110,7 @@
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mEb-9G-aUX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="8tb-Jd-w4V" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="-447" y="-14"/>
         </scene>
