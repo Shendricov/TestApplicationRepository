@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22152" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22113.3" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22127"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22089.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -24,23 +24,40 @@
                                     <action selector="tranzitSecondScene" destination="BYZ-38-t0r" eventType="touchUpInside" id="VZq-4d-H3q"/>
                                 </connections>
                             </button>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="2X9-yY-7Up">
+                                <rect key="frame" x="20" y="508.66666666666669" width="353" height="4.0000000000000568"/>
+                            </progressView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loading app ......." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5sd-N0-8Na">
+                                <rect key="frame" x="20" y="322.66666666666669" width="353" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemGray3Color"/>
                         <constraints>
+                            <constraint firstItem="2X9-yY-7Up" firstAttribute="top" secondItem="P4u-Nb-mON" secondAttribute="bottom" constant="65" id="33d-CI-sYB"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" relation="lessThanOrEqual" secondItem="P4u-Nb-mON" secondAttribute="trailing" constant="20" id="4EX-IP-euO"/>
+                            <constraint firstItem="2X9-yY-7Up" firstAttribute="trailing" secondItem="P4u-Nb-mON" secondAttribute="trailing" id="9FD-TW-uPG"/>
+                            <constraint firstItem="5sd-N0-8Na" firstAttribute="leading" secondItem="P4u-Nb-mON" secondAttribute="leading" id="IGW-aV-uqb"/>
                             <constraint firstItem="P4u-Nb-mON" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="YIX-GO-cA3"/>
+                            <constraint firstItem="P4u-Nb-mON" firstAttribute="top" secondItem="5sd-N0-8Na" secondAttribute="bottom" constant="65" id="a9a-jX-Utw"/>
+                            <constraint firstItem="5sd-N0-8Na" firstAttribute="trailing" secondItem="P4u-Nb-mON" secondAttribute="trailing" id="ntH-VO-V2p"/>
                             <constraint firstItem="P4u-Nb-mON" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="qlC-vW-9PC"/>
                             <constraint firstItem="P4u-Nb-mON" firstAttribute="leading" relation="lessThanOrEqual" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="ubD-jC-cZk"/>
+                            <constraint firstItem="2X9-yY-7Up" firstAttribute="leading" secondItem="P4u-Nb-mON" secondAttribute="leading" id="zND-Eh-KNT"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="buttonTranzitSecondScene" destination="P4u-Nb-mON" id="94x-zO-GU9"/>
+                        <outlet property="loadingLabel" destination="5sd-N0-8Na" id="YWQ-hr-Unb"/>
+                        <outlet property="progressView" destination="2X9-yY-7Up" id="jji-7w-dcF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1166" y="-14"/>
+            <point key="canvasLocation" x="-1167.175572519084" y="-14.084507042253522"/>
         </scene>
         <!--Second View Controller-->
         <scene sceneID="41G-Jd-pt7">
@@ -75,6 +92,10 @@
                                         <rect key="frame" x="0.0" y="98.666666666666686" width="353" height="34.333333333333343"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="filled" title="To the scroll view"/>
+                                        <connections>
+                                            <action selector="toTheThirdScene" destination="tj4-PV-heL" eventType="touchUpInside" id="rXl-9e-Y5v"/>
+                                            <action selector="transiteThirdScene:" destination="8tb-Jd-w4V" eventType="touchUpInside" id="wNo-yg-rYm"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>
@@ -90,6 +111,7 @@
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mEb-9G-aUX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="8tb-Jd-w4V" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="-447" y="-14"/>
         </scene>
@@ -99,13 +121,13 @@
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemGray3Color">
-            <color red="0.78039215689999997" green="0.78039215689999997" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.7803921568627451" green="0.7803921568627451" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGreenColor">
-            <color red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemPinkColor">
-            <color red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="1" green="0.17647058823529413" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
