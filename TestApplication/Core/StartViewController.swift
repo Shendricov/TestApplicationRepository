@@ -100,7 +100,7 @@ extension StartViewController {
     @objc private func setProgress() {
         
         if progressView.progress != 1 {
-            progressView.setProgress(progressView.progress + 0.1, animated: true)
+            progressView.setProgress(progressView.progress + 1, animated: true)
             let persentCompleted = progressView.progress / 1 * 100
             self.loadingLabel.text! = "Loading app ....... \(Int(persentCompleted))%"
         } else {

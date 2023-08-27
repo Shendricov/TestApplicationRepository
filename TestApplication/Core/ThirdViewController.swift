@@ -10,7 +10,7 @@ import UIKit
 class ThirdViewController: UIViewController {
 
     private var contentSize: CGSize {
-        CGSize(width: self.view.bounds.width, height: self.view.bounds.width + 100)
+        CGSize(width: self.view.bounds.width, height: self.view.bounds.height + 100)
     }
     
 //  MARK: 1. make scrollView
@@ -19,7 +19,7 @@ class ThirdViewController: UIViewController {
 //        приравниваем границы самого skrollView с границам view на которой она располагается.
         scrollView.frame = self.view.bounds
 //        пртравниваем контент размер скролл по ширине ко вью и по выстоте более вью на сто точек.
-        scrollView.contentSize = contentSize
+//        scrollView.contentSize = contentSize
         return scrollView
     }()
     
@@ -32,9 +32,10 @@ class ThirdViewController: UIViewController {
     }()
     
 //    MARK: 3. make vertical stack
-    private lazy var vStackView: UIStackView = {
+    private var vStackView: UIStackView = {
        let stack = UIStackView()
         stack.axis = .vertical
+        stack.alignment = .center
         stack.spacing = 20
         return stack
     }()
@@ -42,24 +43,31 @@ class ThirdViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(scrollView)
-        scrollView.addSubview(contentView)
-        contentView.addSubview(vStackView)
+//        scrollView.addSubview(contentView)
+//        contentView.addSubview(vStackView)
+        scrollView.addSubview(vStackView)
+        setupColors()
+        setupViewConstraints()
     }
     
 }
-
 
 extension ThirdViewController {
     private func setupViewConstraints() {
         vStackView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            vStackView.topAnchor.constraint(equalTo: contentView.topAnchor),
-            vStackView.leftAnchor.constraint(equalTo: contentView.leftAnchor),
-            vStackView.rightAnchor.constraint(equalTo: contentView.leftAnchor)
+            vStackView.leftAnchor.constraint(equalTo: scrollView.leftAnchor),
+            vStackView.topAnchor.constraint(equalTo: scrollView.topAnchor),
+            vStackView.rightAnchor.constraint(equalTo: scrollView.rightAnchor),
+            vStackView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor)
+//            vStackView.topAnchor.constraint(equalTo: contentView.topAnchor),
+//            vStackView.leftAnchor.constraint(equalTo: contentView.leftAnchor),
+//            vStackView.rightAnchor.constraint(equalTo: contentView.rightAnchor)
         ])
         for view in vStackView.arrangedSubviews {
+            view.translatesAutoresizingMaskIntoConstraints = false
             NSLayoutConstraint.activate([
-                view.widthAnchor.constraint(equalToConstant: 300),
+                view.widthAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.widthAnchor),
                 view.heightAnchor.constraint(equalToConstant: 100)
             ])
         }
@@ -67,9 +75,10 @@ extension ThirdViewController {
     
     private func setupColors() {
         let colors = [UIColor.red, .blue, .yellow, .green]
-        for index in 0..<10 {
+        for index in 0..<100 {
             let currentView = UIView()
             currentView.backgroundColor = colors[index % colors.count]
+//            currentView.backgroundColor = colors.randomElement()
             vStackView.addArrangedSubview(currentView)
         }
     }
