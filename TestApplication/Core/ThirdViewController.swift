@@ -22,29 +22,40 @@ class ThirdViewController: UIViewController {
 //        scrollView.contentSize = contentSize
         return scrollView
     }()
-    
-//MARK: 2. make content
-    private lazy var contentView: UIView = {
-        let contentView = UIView()
-        contentView.backgroundColor = .white
-        contentView.frame.size = contentSize
-        return contentView
-    }()
-    
-//    MARK: 3. make vertical stack
+        
+//    MARK: 2. make vertical stack
     private var vStackView: UIStackView = {
        let stack = UIStackView()
+        stack.backgroundColor = .white
         stack.axis = .vertical
         stack.alignment = .center
         stack.spacing = 20
         return stack
     }()
     
+// MARK: append button for back tranzit.
+    lazy var buttonBack = {
+        let button = UIButton()
+        button.frame.size = CGSize(width: 300, height: 20)
+        button.setTitle("<--- BACK", for: .normal)
+        button.backgroundColor = .systemCyan
+        button.titleLabel?.font = .systemFont(ofSize: 20, weight: .bold)
+        button.addTarget(self, action: #selector(backButton), for: .touchUpInside)
+        return button
+    }()
+    
+//    MARK: очень важная особенность scrollView она привязывается своими границами к границам view на котором располагается, а вот его вшутренние размеры или contentSize зависит от размера объектов, которые располагаются внутри scrollView. Поэтому привязка и размеры всех объектов внутри scrollView должны быть полностью определены.
+    
+   @objc private func backButton() {
+//       указываем стиль анимации при переходе.
+       self.modalTransitionStyle = .coverVertical
+//       сам переход путем удаления текущего контроллера из иерархии
+       self.dismiss(animated: true)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(scrollView)
-//        scrollView.addSubview(contentView)
-//        contentView.addSubview(vStackView)
         scrollView.addSubview(vStackView)
         setupColors()
         setupViewConstraints()
@@ -54,15 +65,16 @@ class ThirdViewController: UIViewController {
 
 extension ThirdViewController {
     private func setupViewConstraints() {
+        
+        scrollView.addSubview(buttonBack)
+        buttonBack.translatesAutoresizingMaskIntoConstraints = false
+        
         vStackView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             vStackView.leftAnchor.constraint(equalTo: scrollView.leftAnchor),
             vStackView.topAnchor.constraint(equalTo: scrollView.topAnchor),
             vStackView.rightAnchor.constraint(equalTo: scrollView.rightAnchor),
-            vStackView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor)
-//            vStackView.topAnchor.constraint(equalTo: contentView.topAnchor),
-//            vStackView.leftAnchor.constraint(equalTo: contentView.leftAnchor),
-//            vStackView.rightAnchor.constraint(equalTo: contentView.rightAnchor)
+            vStackView.bottomAnchor.constraint(equalTo: buttonBack.topAnchor, constant: -30)
         ])
         for view in vStackView.arrangedSubviews {
             view.translatesAutoresizingMaskIntoConstraints = false
@@ -71,14 +83,21 @@ extension ThirdViewController {
                 view.heightAnchor.constraint(equalToConstant: 100)
             ])
         }
+        
+        NSLayoutConstraint.activate([
+            buttonBack.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
+            buttonBack.widthAnchor.constraint(equalToConstant: 300),
+            buttonBack.heightAnchor.constraint(equalToConstant: 30),
+            buttonBack.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor)
+        ])
+        
     }
     
     private func setupColors() {
         let colors = [UIColor.red, .blue, .yellow, .green]
-        for index in 0..<100 {
+        for index in 0..<10 {
             let currentView = UIView()
             currentView.backgroundColor = colors[index % colors.count]
-//            currentView.backgroundColor = colors.randomElement()
             vStackView.addArrangedSubview(currentView)
         }
     }
