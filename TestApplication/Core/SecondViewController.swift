@@ -29,11 +29,20 @@ class SecondViewController: UIViewController {
     
     
     //    MARK: переходим на экран со scrollView
-    @IBAction func toTheThirdScene() {
+    @IBAction private func toTheThirdScene() {
         let destination: UIViewController = ThirdViewController()
         destination.modalTransitionStyle = .flipHorizontal
         destination.modalPresentationStyle = .fullScreen
         self.present(destination, animated: true)
+    }
+    
+//    MARK: переходим на экран с перетаскиванием view по экрану.
+    @IBAction private func panAndAnimationView() {
+        let destination = PanViewAnimationVC()
+        destination.modalPresentationStyle = .fullScreen
+        destination.modalTransitionStyle = .coverVertical
+        
+            present(destination, animated: true)
     }
     
 }
