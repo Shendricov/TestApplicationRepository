@@ -46,7 +46,8 @@ class PanViewAnimationVC: UIViewController, UIGestureRecognizerDelegate {
    
 }
 
-
+//MARK: делаем отслеживание нажатие и перетаскивание курсора по view. Для этого используем жест UIPanGesture  и добавляем его на нашу передвигаемую view.
+// Отслеживание данного жеста будет только если нажать на передвигаемую view.
 extension PanViewAnimationVC {
 
     private func appendPanGesture() {
@@ -57,14 +58,16 @@ extension PanViewAnimationVC {
     @objc private func panAction(recognise: UIPanGestureRecognizer) {
     
         switch recognise.state {
-        case .began:
-            print("begin")
         case .changed:
-            print("change")
-        case .ended:
-            print("end")
+//            метод показывает какое было смещение относительно точки нажатия.
+            let translation = recognise.translation(in: self.view)
+//            меняем положение передвигаемой view на величину смещения курсора
+            movingView.frame.origin.x += translation.x
+            movingView.frame.origin.y += translation.y
+//            обнуляем значение текущего положения курсора, чтобы перемещение view было плавням.
+            recognise.setTranslation(CGPoint.zero, in: self.view)
         default:
-            print("other state")
+            let translation = recognise.translation(in: self.view)
         }
     }
 }
