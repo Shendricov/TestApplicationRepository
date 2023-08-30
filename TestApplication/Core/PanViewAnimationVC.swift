@@ -43,10 +43,9 @@ class PanViewAnimationVC: UIViewController, UIGestureRecognizerDelegate {
                     movingView.heightAnchor.constraint(equalToConstant: 100)
                 ])
     }
-   
 }
 
-
+//MARK: Append pan gesture for moving view and animate it.
 extension PanViewAnimationVC {
 
     private func appendPanGesture() {
@@ -57,14 +56,72 @@ extension PanViewAnimationVC {
     @objc private func panAction(recognise: UIPanGestureRecognizer) {
     
         switch recognise.state {
-        case .began:
-            print("begin")
         case .changed:
-            print("change")
-        case .ended:
-            print("end")
+            
+//       rotation moving view
+            rotationView()
+            
+//      получаем координаты смещения курсора.
+            let translation = recognise.translation(in: self.view)
+//      меняем положение view  на величину смещения курсора
+            
+            movingView.frame.origin.x += translation.x
+            movingView.frame.origin.y += translation.y
+            
+
+            
+//      reset translation point to zero.
+            recognise.setTranslation(.zero, in: self.view)
+            
+//      animate back to the rect view.
         default:
-            print("other state")
+            if movingView.frame.minX < 0 {
+                UIView.animate(withDuration: 0.2) {
+                    self.movingView.frame.origin.x = 10
+                }
+            } else if movingView.frame.maxX > self.view.bounds.width {
+                UIView.animate(withDuration: 0.2) {
+                    self.movingView.frame.origin.x = self.view.bounds.width - self.movingView.bounds.width - 10
+                }
+            } else if movingView.frame.minY < 0 {
+                UIView.animate(withDuration: 0.2) {
+                    self.movingView.frame.origin.y = 10
+                }
+            } else if movingView.frame.maxY > self.view.bounds.height {
+                UIView.animate(withDuration: 0.2) {
+                    self.movingView.frame.origin.y = self.view.bounds.height - self.movingView.bounds.height - 10
+                }
+            }
         }
+    }
+}
+
+//      animate shadow and rotation movingView.
+extension PanViewAnimationVC {
+   private func  animateShadow(with translation: CGPoint ) {
+        let currentPositionShadow = movingView.layer.shadowOffset
+        let xOffSet = currentPositionShadow.width - translation.x
+        let yOffSet = currentPositionShadow.height - translation.y
+        
+        movingView.layer.shadowOffset = CGSize(width: xOffSet, height: yOffSet)
+        
+        var valueX: CGFloat = .zero
+        var valueY: CGFloat = .zero
+        
+        if translation.x < 0 {
+            valueX = -translation.x / 10
+            valueY = translation.y / 10
+        } else if translation.y < 0 {
+            valueY = -translation.y / 10
+            valueX = translation.x / 10
+        }
+        movingView.layer.shadowRadius += ((valueX + valueY) / 2)
+    }
+    
+    private func rotationView() {
+        let chengePosition = self.view.center.x - self.movingView.center.x
+        let divKoef = self.view.frame.width / 2 * 0.6
+        
+        self.movingView.transform = CGAffineTransform(rotationAngle: chengePosition / divKoef)
     }
 }

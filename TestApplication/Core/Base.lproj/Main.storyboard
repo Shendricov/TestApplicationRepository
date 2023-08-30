@@ -68,7 +68,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="NqC-od-MbP">
-                                <rect key="frame" x="44" y="347.33333333333331" width="305.33333333333326" height="182.33333333333331"/>
+                                <rect key="frame" x="44" y="347.33333333333331" width="305.33333333333331" height="182.33333333333331"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ifO-Tx-m5c">
                                         <rect key="frame" x="0.0" y="0.0" width="305.33333333333331" height="34.333333333333336"/>
@@ -106,21 +106,15 @@
                                         </connections>
                                     </button>
                                 </subviews>
-                                <constraints>
-                                    <constraint firstItem="a7h-8y-JHD" firstAttribute="trailing" secondItem="v0e-F5-YWu" secondAttribute="trailing" id="dAP-qw-4qM"/>
-                                    <constraint firstItem="NsZ-Wu-kZp" firstAttribute="leading" secondItem="a7h-8y-JHD" secondAttribute="leading" id="hRe-X6-svY"/>
-                                    <constraint firstItem="a7h-8y-JHD" firstAttribute="leading" secondItem="v0e-F5-YWu" secondAttribute="leading" id="lol-hp-OL0"/>
-                                    <constraint firstItem="v0e-F5-YWu" firstAttribute="leading" secondItem="ifO-Tx-m5c" secondAttribute="leading" id="tEY-0e-cDh"/>
-                                    <constraint firstItem="NsZ-Wu-kZp" firstAttribute="trailing" secondItem="a7h-8y-JHD" secondAttribute="trailing" id="wNt-L1-aNS"/>
-                                    <constraint firstItem="v0e-F5-YWu" firstAttribute="trailing" secondItem="ifO-Tx-m5c" secondAttribute="trailing" id="xUg-VX-4dq"/>
-                                </constraints>
                             </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="r0W-Ov-1Ef"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="NqC-od-MbP" firstAttribute="centerX" secondItem="r0W-Ov-1Ef" secondAttribute="centerX" id="VjS-08-k6d"/>
-                            <constraint firstItem="NqC-od-MbP" firstAttribute="centerY" secondItem="r0W-Ov-1Ef" secondAttribute="centerY" id="sVc-Nx-p36"/>
+                            <constraint firstItem="r0W-Ov-1Ef" firstAttribute="trailing" secondItem="NqC-od-MbP" secondAttribute="trailing" constant="43.666666666666686" id="8e1-8b-JUM"/>
+                            <constraint firstItem="NqC-od-MbP" firstAttribute="leading" secondItem="r0W-Ov-1Ef" secondAttribute="leading" constant="44" id="GW3-3y-6Oc"/>
+                            <constraint firstItem="r0W-Ov-1Ef" firstAttribute="bottom" secondItem="NqC-od-MbP" secondAttribute="bottom" constant="288.33333333333326" id="T6F-iW-VYu"/>
+                            <constraint firstItem="NqC-od-MbP" firstAttribute="top" secondItem="r0W-Ov-1Ef" secondAttribute="top" constant="288.33333333333337" id="fmw-rJ-QHD"/>
                         </constraints>
                     </view>
                 </viewController>

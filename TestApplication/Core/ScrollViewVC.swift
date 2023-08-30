@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ThirdViewController: UIViewController {
+class ScrollViewVC: UIViewController {
 
     private var contentSize: CGSize {
         CGSize(width: self.view.bounds.width, height: self.view.bounds.height + 100)
@@ -63,7 +63,7 @@ class ThirdViewController: UIViewController {
     
 }
 
-extension ThirdViewController {
+extension ScrollViewVC {
     private func setupViewConstraints() {
         
         scrollView.addSubview(buttonBack)
